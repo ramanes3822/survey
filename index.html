@@ -13,7 +13,7 @@
     </div>
     <div class="rewards-text"><p>Submit to get rewards</p></div>
     <div class="form-container">
-      <form id="register-form" action="https://5679-175-139-147-209.ngrok-free.app/api/smart-engage/post/get-rewards-line" method="post">
+      <form id="register-form" action="https://838a-175-139-147-209.ngrok-free.app/api/smart-engage/post/get-rewards-line" method="post">
         <input type="hidden" name="coupon-id" value="569">
         <label for="country-code">Country code:</label>
         <select id="country-code" name="country-code">
@@ -35,10 +35,10 @@
           event.preventDefault();
           const countryCode = $('#country-code').val();
           const phoneNumber = $('#phone-number').val();
-          const fullPhoneNumber = countryCode + phoneNumber;
           const formData = {
             'coupon-id': $('#register-form').find('input[name="coupon-id"]').val(),
-            'phone-number': fullPhoneNumber,
+            'country-code': countryCode,
+            'phone-number': phoneNumber,
             'type': 'redeem_request'
           }
           $.ajax({
@@ -46,10 +46,11 @@
             url: $('#register-form').attr('action'),
             data: JSON.stringify(formData),
             success: function(response){
-              console.log(response);
-              if (response.ok) {
-                console.log(response.url);
-                window.location.href = response.url;
+              console.log(response.message);
+              if (response) {
+                console.log(response)
+                //redirect to url
+                window.location.replace(response.url);
               } else {
                 $('#response-message').html(response.message);
               }
@@ -59,36 +60,6 @@
           })
         })
       })
-      // const form = document.getElementById('register-form')
-      // const responseMessage = document.getElementById('response-message')
-
-      // form.addEventListener('submit', async(event)=>{
-      //   event.preventDefault();
-
-      //   //concatenate country code and phone number
-      //   const countryCode = document.getElementById('country-code').value;
-      //   const phoneNumber = document.getElementById('phone-number').value;
-      //   const fullPhoneNumber = countryCode + phoneNumber;
-
-      //   const formData = {
-      //     'coupon-id': form.elements['coupon-id'].value,
-      //     'phone-number': fullPhoneNumber,
-      //     'type': 'redeem_request'
-      //   }
-      //    const response = await fetch(form.action, {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify(formData),
-      //   });
-      //   const result = await response.json();
-      //   if (response.ok) {
-      //     window.location.href = result.url;
-      //   } else {
-      //     console.log(result.message);
-      //   }
-      // })
     </script>
 
   </body>
