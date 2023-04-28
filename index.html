@@ -13,8 +13,15 @@
     </div>
     <div class="rewards-text"><p>Submit to get rewards</p></div>
     <div class="form-container">
-      <form id="register-form" action="https://838a-175-139-147-209.ngrok-free.app/api/smart-engage/post/get-rewards-line" method="post">
+      <form id="register-form" action="https://a05e-175-139-147-209.ngrok-free.app/api/smart-engage/post/get-rewards-line" method="post">
         <input type="hidden" name="coupon-id" value="569">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter name">
+        <!-- radio button for male or femail -->
+        <br><br>
+        <input type="radio" name="gender" value="male"/>Male
+        <input type="radio" name="gender" value="male"/>Female
+        <br><br>
         <label for="country-code">Country code:</label>
         <select id="country-code" name="country-code">
           <option value="65">Singapore(+65)</option>
@@ -46,9 +53,7 @@
             url: $('#register-form').attr('action'),
             data: JSON.stringify(formData),
             success: function(response){
-              console.log(response.message);
               if (response) {
-                console.log(response)
                 //redirect to url
                 window.location.replace(response.url);
               } else {
