@@ -5,38 +5,51 @@
     <title>Survey-Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
   </head>
   <body>
-    
-    <div class="banner">
-      <img src="assets/sample2.png" alt="banner image">
+    <div class="container_main">
+      <div class="container_img">
+        <div class="row">
+          <div class="col-25">
+            <img src="assets/title_img.png" alt="title">
+            <img src="assets/Homepage.png" alt="banner image">
+          </div>
+        </div>
+      </div>
+      <div class="container_form">
+        <form id="register-form" action="https://dev-global.sp.smartretail.co/api/smart-engage/post/get-rewards-line"
+          method="post">
+          <div class="row">
+            <div class="col-25">
+              <input type="text" id="phone-number" name="phone-number" placeholder="Your phone number">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+            </div>
+          </div>
+          <div class="row">
+            <!-- <input type="submit" value="Receive message via Line" class="submit-btn"> -->
+            <button type="submit" class="submit-btn"><img src="assets/line_icon.png" width="30px" class="submit-btn-icon"/>Receive message via Line</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="rewards-text"><p>Submit to get rewards</p></div>
-    <div class="form-container">
-      <form id="register-form" action="https://dev-global.sp.smartretail.co/api/smart-engage/post/get-rewards-line" method="post">
-        <input type="hidden" name="coupon-id" value="569">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Enter name">
-        <!-- radio button for male or femail -->
-        <br><br>
-        <input type="radio" name="gender" value="male"/>Male
-        <input type="radio" name="gender" value="male"/>Female
-        <br><br>
-        <label for="country-code">Country code:</label>
-        <select id="country-code" name="country-code">
-          <option value="65">Singapore(+65)</option>
-          <option value="852">Hong Kong (+852)</option>
-          <option value="81">Japan (+81)</option>
-          <option value="60">Malaysia (+60)</option>
-        </select>
-        <label for="phone-number">Phone number:</label>
-        <input type="text" id="phone-number" name="phone-number" placeholder="Enter phone number">
-        <input type="submit" value="Submit">
-      </form>
-      <div id="response-message"></div>
-    </div>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+
+      const phoneInputField = document.querySelector("#phone-number");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+          utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
       $(document).ready(function(){
         $('#register-form').submit(function(event){
           event.preventDefault();

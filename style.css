@@ -1,69 +1,113 @@
-/* Style the form container */
-.banner {
-  max-width: 530px;
+
+* {
+  box-sizing: border-box;
+}
+
+.container_main {
+  max-width: 500px;
   margin: auto;
 }
 
-.banner img {
-  width: 100%;
+.container_img {
+  position: relative;
+  margin: auto;
+  padding-top: 76px;
+  padding-bottom: 20%;
 }
 
-.rewards-text {
-  display: flex;
+.container_img img {
+  position: absolute;
+  width: 530px;
+}
+
+.container_img img:first-child {
+  z-index: 1;
+}
+
+.container_img img:last-child {
+  border-radius: 30px;
+}
+
+input[type=text], select, textarea {
+  padding: 12px;
+  margin-right: auto !important;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: vertical;
+  width: 530px;
+  margin-left: auto !important;
+}
+
+.submit-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 3px;
-  background-color: #a19999;
-  margin: auto;
-  height: 26px;
-  flex: auto;
-  max-width: 530px;
+  padding: 5px 20px;
+  background-color: #e7e9e9;
+  color: #030000;
+  border: none;
+  border-radius: 10px;
+  width: 530px;
 }
 
-.form-container {
-    padding: 20px;
-    background-color: #f2f2f2;
-    max-width: 500px;
-    margin: auto;
+.submit-btn-icon {
+  margin-right: 10px;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;  
+}
+
+.submit-btn {
+  position: relative;
+  padding-left: 40px; /* adjust the padding as needed */
+}
+
+
+.container_form {
+  top: 50%;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-top: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  padding: 20px;
+}
+
+.col-25 {
+  width: 25% ;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .container_img {
+    max-width: 100%;
+    padding-bottom: 1%;
   }
-  
-  /* Style the input fields */
-  input[type=text], select {
+  .container_img img {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
   }
-  
-  /* Style the submit button */
-  input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
+  .container_form{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
-  
-  /* Style the submit button on hover */
-  input[type=submit]:hover {
-    background-color: #45a049;
+  .container_form input[type="text"] {
+    width: 100%;
+    margin-right: 120px !important;
   }
-  
-  /* Responsive layout - makes the form container stack on top of each other */
-  @media (max-width: 600px) {
-    .form-container {
-      max-width: 100%;
-    }
-    .banner {
-      max-width: 100%;
-    }
-    .rewards-text {
-      max-width: 100%;
-    }
+  .col-25, .col-75, .submit-btn {
+    width: 100%;
+    overflow: hidden;
   }
-  
+}
