@@ -103,6 +103,7 @@
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const phoneNumber = phoneInput.getNumber();
+        const formatedPhoneNumber = String(phoneNumber).replace('+', '');
         const redirectURL = 'https://line.me/R/oaMessage/' + chanelId + '/?Kindly%20"PRESS"%20send%20to%20register%20your%20Device%0A%5BPhoneNum:' + phoneNumber + ',%0AMode:Register%5D';
 
         window.location.href = redirectURL;
