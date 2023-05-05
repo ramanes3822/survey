@@ -5,6 +5,11 @@
     <title>Survey-Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="landing.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
   </head>
   <body>
     <div class="container_main">
@@ -16,12 +21,11 @@
         </div>
       </div>
       <div class="container_form">
-        <!-- <form id="register-form" action="https://dev-global.sp.smartretail.co/api/smart-engage/post/get-rewards-line" -->
-        <form id="register-form"
-          method="post">
+        <div id="response-message" class="responseMessage"></div>
+        <form id="register-form">
           <div class="row">
             <div class="col-25">
-              <div id="response-message" class="responseMessage"></div>
+              <input type="text" id="phone-number" name="phone-number" placeholder="Your phone number">
             </div>
           </div>
           <div class="row">
@@ -29,7 +33,6 @@
             </div>
           </div>
           <div class="row">
-            <!-- <input type="submit" value="Receive message via Line" class="submit-btn"> -->
             <button type="submit" class="submit-btn"><img src="assets/line_icon.png" width="30px" class="submit-btn-icon"/>Connect via Line here</button>
           </div>
         </form>
@@ -39,6 +42,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/fernet@0.4.0/fernetBrowser.min.js"></script>
     <script>
+      const phoneInputField = document.querySelector("#phone-number");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+          initialCountry: "jp",
+          separateDialCode: true,
+        onlyCountries: ["sg", "jp", "hk", "my"],
+          utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
       const form = document.getElementById('register-form');
       const responseMessage = document.getElementById('response-message');
       const chanelId = '@436zzgxi';
@@ -57,28 +68,32 @@
 
           const queryParams = new URLSearchParams(decryptedQueryString);
 
-          const countryCode = queryParams.get('country-code');
+          const countryCode = "+"+queryParams.get('country-code');
           const couponId = queryParams.get('coupon-id');
           const phoneNumber = queryParams.get('phone-number');
           const userStatus = queryParams.get('user-status');
 
           if (userStatus == 'not_registered') {
-            responseMessage.textContent = "You have not registered yet!, please click submit to connect and get your coupon";
-            responseMessage.style.color = "blue";
+            if (countryCode && phoneNumber) {
+              const fullPhoneNumber = countryCode + phoneNumber;
+              phoneInput.setNumber(`${countryCode}${phoneNumber}`);
+              //show form
+              responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number <strong>${fullPhoneNumber}</strong><br><br>
+                                          Tap below and send the connect message to proceed.`;
+            }
+            else{
+              responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number - <strong>{Phone number}</strong><br><br>
+                                          Tap below and send the connect message to proceed.`;
+            }
           }
           if (userStatus == 'coupon_submitted') {
             //hide form
             form.style.display = "none";
-            responseMessage.textContent = "coupon has been submitted please check your line app for the coupon status";
-            responseMessage.style.color = "green";
-          }
-
-          if (countryCode && phoneNumber) {
-            form.elements['country-code'].value = countryCode;
-            form.elements['phone-number'].value = phoneNumber;
+            responseMessage.innerHTML = `We just sent a message to your Line App account using <strong>+${phoneNumber}</strong>`;
           }
 
         } catch (error) {
+          console.log(error);
           form.style.display = "none";
           responseMessage.textContent = "Invalid URL";
           responseMessage.style.color = "red";
@@ -87,11 +102,7 @@
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        //concatenate country code and phone number
-        const countryCode = document.getElementById('country-code').value;
-        const phoneNumber = document.getElementById('phone-number').value;
-        const fullPhoneNumber = countryCode + phoneNumber;
-
+        const phoneNumber = phoneInput.getNumber();
         const redirectURL = 'https://line.me/R/oaMessage/' + chanelId + '/?Kindly%20"PRESS"%20send%20to%20register%20your%20Device%0A%5BPhoneNum:' + fullPhoneNumber + ',%0AMode:Register%5D';
 
         window.location.href = redirectURL;

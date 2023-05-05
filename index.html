@@ -22,6 +22,7 @@
         </div>
       </div>
       <div class="container_form">
+        <!-- <form id="register-form" action="https://13cb-175-139-147-209.ngrok-free.app/api/smart-engage/post/get-rewards-line" -->
         <form id="register-form" action="https://dev-global.sp.smartretail.co/api/smart-engage/post/get-rewards-line"
           method="post">
           <div class="row">
@@ -34,9 +35,9 @@
             </div>
           </div>
           <div class="row">
-            <!-- <input type="submit" value="Receive message via Line" class="submit-btn"> -->
             <button type="submit" class="submit-btn"><img src="assets/line_icon.png" width="30px" class="submit-btn-icon"/>Receive message via Line</button>
           </div>
+          <input type="hidden" name="coupon-id" value="569">
         </form>
       </div>
     </div>
@@ -47,13 +48,16 @@
 
       const phoneInputField = document.querySelector("#phone-number");
       const phoneInput = window.intlTelInput(phoneInputField, {
+          initialCountry: "jp",
+          separateDialCode: true,
+        onlyCountries: ["sg", "jp", "hk", "my"],
           utilsScript:
             "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
         });
       $(document).ready(function(){
         $('#register-form').submit(function(event){
           event.preventDefault();
-          const countryCode = $('#country-code').val();
+          const countryCode = phoneInput.getSelectedCountryData().dialCode;
           const phoneNumber = $('#phone-number').val();
           const formData = {
             'coupon-id': $('#register-form').find('input[name="coupon-id"]').val(),
@@ -61,6 +65,7 @@
             'phone-number': phoneNumber,
             'type': 'redeem_request'
           }
+          
           $.ajax({
             type: 'POST',
             url: $('#register-form').attr('action'),
