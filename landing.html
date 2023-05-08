@@ -65,6 +65,7 @@
       // Get the encrypted query string and key from the response
       const encryptedQueryString = params.get('data');
       const key = params.get('key');
+      const receivedPhoneNumber = '';
 
       if (encryptedQueryString && key) {
         try {
@@ -78,10 +79,12 @@
           const couponId = queryParams.get('coupon-id');
           const phoneNumber = queryParams.get('phone-number');
           const userStatus = queryParams.get('user-status');
+          
 
           if (userStatus == 'not_registered') {
             if (countryCode && phoneNumber) {
               const fullPhoneNumber = countryCode + phoneNumber;
+              receivedPhoneNumber = fullPhoneNumber;
               // hide phone number input
               phoneInputField.style.display = "none";
               const countryList = document.querySelector(".iti");
@@ -113,9 +116,7 @@
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const phoneNumber = phoneInput.getNumber();
-        const formatedPhoneNumber = String(phoneNumber).replace('+', '');
-        const redirectURL = 'https://line.me/R/oaMessage/' + chanelId + '/?Please%20send%20me%20my%20reward%0A%5BPhoneNum:' + formatedPhoneNumber + ',%0AMode:Register%5D';
+        const redirectURL = 'https://line.me/R/oaMessage/' + chanelId + '/?Please%20send%20me%20my%20reward%0A%5BPhoneNum:' + receivedPhoneNumber + ',%0AMode:Register%5D';
 
         window.location.href = redirectURL;
       }
