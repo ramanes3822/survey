@@ -85,6 +85,7 @@
               phoneInput.setNumber(`${countryCode}${phoneNumber}`);
               // hide phone number input
               phoneInputField.style.display = "none";
+              phoneInputField.disabled = true;
               //show form
               responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number <strong>${fullPhoneNumber}</strong><br><br>
                                           Tap below and send the connect message to proceed.`;
