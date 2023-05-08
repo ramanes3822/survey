@@ -25,7 +25,6 @@
         <form id="register-form">
           <div class="row">
             <div class="col-25">
-              <input type="text" id="phone-number" name="phone-number" placeholder="Your phone number">
             </div>
           </div>
           <div class="row">
@@ -47,14 +46,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/fernet@0.4.0/fernetBrowser.min.js"></script>
     <script>
-      const phoneInputField = document.querySelector("#phone-number");
-      const phoneInput = window.intlTelInput(phoneInputField, {
-          initialCountry: "jp",
-          separateDialCode: true,
-        onlyCountries: ["sg", "jp", "hk", "my"],
-          utilsScript:
-            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-        });
       const form = document.getElementById('register-form');
       const responseMessage = document.getElementById('response-message');
       const chanelId = '@436zzgxi';
@@ -65,6 +56,7 @@
       // Get the encrypted query string and key from the response
       const encryptedQueryString = params.get('data');
       const key = params.get('key');
+      const receivePhoneNumber = ''
 
       if (encryptedQueryString && key) {
         try {
@@ -82,7 +74,8 @@
           if (userStatus == 'not_registered') {
             if (countryCode && phoneNumber) {
               const fullPhoneNumber = countryCode + phoneNumber;
-              phoneInput.setNumber(`${countryCode}${phoneNumber}`);
+              receivePhoneNumber = fullPhoneNumber;
+              // phoneInput.setNumber(`${countryCode}${phoneNumber}`);
               //show form
               responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number <strong>${fullPhoneNumber}</strong><br><br>
                                           Tap below and send the connect message to proceed.`;
@@ -95,7 +88,7 @@
           if (userStatus == 'coupon_submitted') {
             //hide form
             form.style.display = "none";
-            responseMessage.innerHTML = `We just sent a message to your Line App account using <strong>+${phoneNumber}</strong>`;
+            responseMessage.innerHTML = `We just sent a message to your Line App account using <strong>+${receivePhoneNumber}</strong>`;
           }
 
         } catch (error) {
@@ -108,8 +101,6 @@
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const phoneNumber = phoneInput.getNumber();
-        const formatedPhoneNumber = String(phoneNumber).replace('+', '');
         const redirectURL = 'https://line.me/R/oaMessage/' + chanelId + '/?Please%20send%20me%20my%20reward%0A%5BPhoneNum:' + formatedPhoneNumber + ',%0AMode:Register%5D';
 
         window.location.href = redirectURL;
