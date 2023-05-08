@@ -25,7 +25,7 @@
         <form id="register-form">
           <div class="row">
             <div class="col-25">
-              <input type="text" id="phone-number" name="phone-number" placeholder="Your phone number">
+              <input type="text" id="phone-number" name="phone-number" placeholder="Your phone number" class="phone-input">
             </div>
           </div>
           <div class="row">
@@ -83,7 +83,11 @@
             if (countryCode && phoneNumber) {
               const fullPhoneNumber = countryCode + phoneNumber;
               // hide phone number input
-              var phoneNumberInput = document.getElementById("phone-number");
+              phoneInputField.style.display = "none";
+              const countryList = document.querySelector(".iti");
+              if (countryList) {
+                countryList.style.display = "none";
+              }
               //show form
               responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number <strong>${fullPhoneNumber}</strong><br><br>
                                           Tap below and send the connect message to proceed.`;
