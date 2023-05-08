@@ -65,7 +65,7 @@
       // Get the encrypted query string and key from the response
       const encryptedQueryString = params.get('data');
       const key = params.get('key');
-      const receivedPhoneNumber = '';
+      let receivedPhoneNumber = '';
 
       if (encryptedQueryString && key) {
         try {
@@ -84,6 +84,7 @@
           if (userStatus == 'not_registered') {
             if (countryCode && phoneNumber) {
               const fullPhoneNumber = countryCode + phoneNumber;
+              //set receivedPhoneNumber to fullPhoneNumber
               receivedPhoneNumber = fullPhoneNumber;
               // hide phone number input
               phoneInputField.style.display = "none";
