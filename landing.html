@@ -56,7 +56,7 @@
       // Get the encrypted query string and key from the response
       const encryptedQueryString = params.get('data');
       const key = params.get('key');
-      const receivePhoneNumber = ''
+      const fullPhoneNumber = ''
 
       if (encryptedQueryString && key) {
         try {
@@ -70,25 +70,17 @@
           const couponId = queryParams.get('coupon-id');
           const phoneNumber = queryParams.get('phone-number');
           const userStatus = queryParams.get('user-status');
+          fullPhoneNumber = countryCode + phoneNumber;
 
           if (userStatus == 'not_registered') {
-            if (countryCode && phoneNumber) {
-              const fullPhoneNumber = countryCode + phoneNumber;
-              receivePhoneNumber = fullPhoneNumber;
-              // phoneInput.setNumber(`${countryCode}${phoneNumber}`);
-              //show form
+
               responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number <strong>${fullPhoneNumber}</strong><br><br>
                                           Tap below and send the connect message to proceed.`;
-            }
-            else{
-              responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number - <strong>{Phone number}</strong><br><br>
-                                          Tap below and send the connect message to proceed.`;
-            }
           }
           if (userStatus == 'coupon_submitted') {
             //hide form
             form.style.display = "none";
-            responseMessage.innerHTML = `We just sent a message to your Line App account using <strong>+${receivePhoneNumber}</strong>`;
+            responseMessage.innerHTML = `We just sent a message to your Line App account using <strong>+${fullPhoneNumber}</strong>`;
           }
 
         } catch (error) {
@@ -101,8 +93,7 @@
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const redirectURL = 'https://line.me/R/oaMessage/' + chanelId + '/?Please%20send%20me%20my%20reward%0A%5BPhoneNum:' + formatedPhoneNumber + ',%0AMode:Register%5D';
-
+        const redirectURL = 'https://line.me/R/oaMessage/' + chanelId + '/?Please%20send%20me%20my%20reward%0A%5BPhoneNum:' + fullPhoneNumber + ',%0AMode:Register%5D';
         window.location.href = redirectURL;
       }
       )
