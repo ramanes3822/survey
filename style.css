@@ -12,8 +12,14 @@
 .container_img {
   position: relative;
   margin: auto;
-  padding-top: 76px;
+  padding-top: 30px;
   padding-bottom: 20%;
+}
+
+.image_wrapper {
+  display: inline-block;
+  border-radius: 30px;
+  overflow: hidden;
 }
 
 .container_img img {
@@ -23,10 +29,16 @@
 
 .container_img img:first-child {
   z-index: 1;
+  margin-bottom: -20px;
+  margin-left: 10%;
 }
 
 .container_img img:last-child {
+  margin-top: 100px;
   border-radius: 30px;
+  width: 450px;
+  margin-left: 15%;
+  object-fit: cover;
 }
 
 input[type=text], select, textarea {
@@ -67,7 +79,6 @@ input[type=submit]:hover {
 
 .container_form {
   top: 50%;
-  border-radius: 5px;
   background-color: #ffffff;
   margin-top: 220px;
   display: flex;
@@ -97,6 +108,18 @@ input[type=submit]:hover {
   }
   .container_img img {
     width: 100%;
+  }
+  .container_img img:first-child {
+    margin-bottom: -20px;
+    margin-left: 20%;
+    margin-right: auto;
+  }
+  .container_img img:last-child {
+    margin-top: 100px;
+    border-radius: 20px;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: auto;
   }
   .container_form{
     width: 100%;

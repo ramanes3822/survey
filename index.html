@@ -16,8 +16,10 @@
       <div class="container_img">
         <div class="row">
           <div class="col-25">
-            <img src="assets/title_img.png" alt="title">
-            <img src="assets/Homepage.png" alt="banner image">
+            <img src="assets/title_img2.png" alt="title" class="headerImg">
+            <div class="image_wrapper">
+              <img src="assets/cafe-piazza.png" alt="banner" class="imageBanner">
+            </div>
           </div>
         </div>
       </div>
@@ -63,7 +65,7 @@
             'coupon-id': $('#register-form').find('input[name="coupon-id"]').val(),
             'country-code': countryCode,
             'phone-number': phoneNumber,
-            'type': 'redeem_request'
+            'type': 'cafe_piazza'
           }
           
           $.ajax({

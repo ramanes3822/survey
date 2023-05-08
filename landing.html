@@ -104,7 +104,7 @@
         event.preventDefault();
         const phoneNumber = phoneInput.getNumber();
         const formatedPhoneNumber = String(phoneNumber).replace('+', '');
-        const redirectURL = 'https://line.me/R/oaMessage/' + chanelId + '/?Kindly%20"PRESS"%20send%20to%20register%20your%20Device%0A%5BPhoneNum:' + formatedPhoneNumber + ',%0AMode:Register%5D';
+        const redirectURL = 'https://line.me/R/oaMessage/' + chanelId + '/?Please%20send%20me%20my%20reward%0A%5BPhoneNum:' + formatedPhoneNumber + ',%0AMode:Register%5D';
 
         window.location.href = redirectURL;
       }
