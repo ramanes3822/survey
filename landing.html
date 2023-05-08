@@ -82,10 +82,8 @@
           if (userStatus == 'not_registered') {
             if (countryCode && phoneNumber) {
               const fullPhoneNumber = countryCode + phoneNumber;
-              phoneInput.setNumber(`${countryCode}${phoneNumber}`);
               // hide phone number input
-              phoneInputField.style.display = "none";
-              phoneInputField.disabled = true;
+              var phoneNumberInput = document.getElementById("phone-number");
               //show form
               responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number <strong>${fullPhoneNumber}</strong><br><br>
                                           Tap below and send the connect message to proceed.`;
