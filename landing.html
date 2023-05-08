@@ -72,6 +72,12 @@
           const userStatus = queryParams.get('user-status');
           fullPhoneNumber = countryCode + phoneNumber;
 
+          console.log('countryCode: ' + countryCode)
+          console.log('couponId: ' + couponId)
+          console.log('phoneNumber: ' + phoneNumber)
+          console.log('userStatus: ' + userStatus)
+          console.log('fullPhoneNumber: ' + fullPhoneNumber)
+
           if (userStatus == 'not_registered') {
 
               responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number <strong>${fullPhoneNumber}</strong><br><br>
