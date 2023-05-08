@@ -117,6 +117,7 @@
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
+        const formatedPhoneNumber = receivedPhoneNumber.replace('+', '');
         const redirectURL = 'https://line.me/R/oaMessage/' + chanelId + '/?Please%20send%20me%20my%20reward%0A%5BPhoneNum:' + receivedPhoneNumber + ',%0AMode:Register%5D';
 
         window.location.href = redirectURL;
