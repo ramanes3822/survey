@@ -66,6 +66,12 @@
             'phone-number': phoneNumber,
             'type': 'cafe_piazza'
           }
+
+          //if phone number is empty
+          if (!phoneNumber) {
+            $('#response-message').html('Please enter your phone number');
+            return;
+          }
           
           $.ajax({
             type: 'POST',
