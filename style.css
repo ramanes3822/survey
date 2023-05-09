@@ -4,6 +4,21 @@
   font-family: sans-serif;
 }
 
+.downloadPiazzaText{
+  color: #1155AA;
+  border: #1155AA;
+  border-radius: 10px;
+  background-color: rgba(17, 85, 170, 0.1);
+  padding: 10px;
+  padding-top: 10px;
+  text-align: center;
+  font-size: small;
+  border-style: dashed;
+  border-width: 1.5px;
+  width: 530px;
+  margin-bottom: 8%;
+}
+
 .container_main {
   max-width: 500px;
   margin: auto;
@@ -16,11 +31,6 @@
   padding-bottom: 20%;
 }
 
-.image_wrapper {
-  display: inline-block;
-  border-radius: 30px;
-  overflow: hidden;
-}
 
 .container_img img {
   position: absolute;
@@ -28,17 +38,26 @@
 }
 
 .container_img img:first-child {
-  z-index: 1;
-  margin-bottom: -20px;
-  margin-left: 10%;
+  z-index: 0;
+  border-radius: 10px;
 }
 
 .container_img img:last-child {
-  margin-top: 100px;
-  border-radius: 30px;
+  margin-top: 80px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
   width: 450px;
   margin-left: 15%;
   object-fit: cover;
+  max-width: 530px;
+}
+.container_img .overlay {
+  position: absolute; /* Position the overlay */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Set the overlay color and transparency */
 }
 
 input[type=text], select, textarea {
@@ -107,19 +126,22 @@ input[type=submit]:hover {
     padding-bottom: 1%;
   }
   .container_img img {
+    margin-top: 30px;
     width: 100%;
   }
   .container_img img:first-child {
-    margin-bottom: -20px;
-    margin-left: 20%;
-    margin-right: auto;
+    border-top-style: groove;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    width: 100%;
   }
   .container_img img:last-child {
-    margin-top: 100px;
-    border-radius: 20px;
-    width: 90%;
-    margin-left: 5%;
+    /* margin-top: 30px; */
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    margin-left: auto;
     margin-right: auto;
+    width: 100%;
   }
   .container_form{
     width: 100%;
@@ -134,4 +156,9 @@ input[type=submit]:hover {
     width: 100%;
     overflow: hidden;
   }
+  .downloadPiazzaText{
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    }
 }
