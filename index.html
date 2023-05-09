@@ -49,7 +49,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-
+      const params = new URLSearchParams(window.location.search);
+      const couponId = params.get('coupon-id');
       const phoneInputField = document.querySelector("#phone-number");
       const phoneInput = window.intlTelInput(phoneInputField, {
           initialCountry: "jp",
@@ -64,7 +65,7 @@
           const countryCode = phoneInput.getSelectedCountryData().dialCode;
           const phoneNumber = $('#phone-number').val();
           const formData = {
-            'coupon-id': $('#register-form').find('input[name="coupon-id"]').val(),
+            'coupon-id': couponId,
             'country-code': countryCode,
             'phone-number': phoneNumber,
             'type': 'cafe_piazza'
