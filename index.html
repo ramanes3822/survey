@@ -24,8 +24,13 @@
         </div>
       </div>
       <div class="container_form">
-        <form id="register-form" action="https://30df-175-139-147-209.ngrok-free.app//api/smart-engage/post/get-rewards-line" method="post">
+        <form id="register-form" action="https://da35-175-139-147-209.ngrok-free.app/api/smart-engage/post/get-rewards-line" method="post">
         <!-- <form id="register-form" action="https://dev-global.sp.smartretail.co/api/smart-engage/post/get-rewards-line" method="post"> -->
+          <div class="row">
+            <div class="col-25">
+              <p class="downloadPiazzaText">Download the Piazza App for coupon reward</p>
+            </div>
+          </div>
           <div class="row">
             <div class="col-25">
               <input type="text" id="phone-number" name="phone-number" placeholder="Your phone number">
@@ -46,7 +51,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-
+      const params = new URLSearchParams(window.location.search);
+      const couponId = params.get('coupon-id');
+      console.log(couponId);
       const phoneInputField = document.querySelector("#phone-number");
       const phoneInput = window.intlTelInput(phoneInputField, {
           initialCountry: "jp",
@@ -61,7 +68,7 @@
           const countryCode = phoneInput.getSelectedCountryData().dialCode;
           const phoneNumber = $('#phone-number').val();
           const formData = {
-            'coupon-id': $('#register-form').find('input[name="coupon-id"]').val(),
+            'coupon-id': couponId,
             'country-code': countryCode,
             'phone-number': phoneNumber,
             'type': 'cafe_piazza'

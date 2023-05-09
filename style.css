@@ -4,6 +4,21 @@
   font-family: sans-serif;
 }
 
+.downloadPiazzaText{
+  color: #1155AA;
+  border: #1155AA;
+  border-radius: 10px;
+  background-color: rgba(17, 85, 170, 0.1);
+  padding: 10px;
+  padding-top: 10px;
+  text-align: center;
+  font-size: small;
+  border-style: dashed;
+  border-width: 1.5px;
+  width: 530px;
+  margin-bottom: 8%;
+}
+
 .container_main {
   max-width: 500px;
   margin: auto;
@@ -134,4 +149,9 @@ input[type=submit]:hover {
     width: 100%;
     overflow: hidden;
   }
+  .downloadPiazzaText{
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    }
 }
