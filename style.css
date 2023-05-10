@@ -160,7 +160,16 @@ input[type=submit]:hover {
     .iti__country-list {
       width: 100% !important;
       position: absolute !important;
-      bottom: calc(28% + 100px);
+      bottom: calc(40% + 100px);
 
     }
+}
+
+@media screen and (max-width: 400px) {
+  .iti__country-list {
+    width: 100% !important;
+    position: absolute !important;
+    bottom: calc(35% + 1px) !important;
+    left: 0;
+  }
 }
