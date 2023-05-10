@@ -93,6 +93,10 @@ input[type=submit]:hover {
   padding-left: 40px; /* adjust the padding as needed */
 }
 
+.iti__country-list {
+  width: 530px;
+}
+
 
 .container_form {
   top: 50%;
@@ -152,5 +156,11 @@ input[type=submit]:hover {
     width: 100%;
     padding-top: 5%;
     padding-bottom: 5%;
+    }
+    .iti__country-list {
+      width: 100% !important;
+      position: absolute !important;
+      bottom: calc(28% + 100px);
+
     }
 }
