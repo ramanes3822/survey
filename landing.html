@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="row">
-            <button type="submit" class="submit-btn"><img src="assets/line_icon.png" width="30px" class="submit-btn-icon"/>Connect via Line here</button>
+            <button type="submit" class="submit-btn"><img src="assets/line_icon.png" width="30px" class="submit-btn-icon"/>Tap here to connect via Line</button>
           </div>
           <div class="row">
             <div class="col-25">
@@ -93,12 +93,10 @@
                 countryList.style.display = "none";
               }
               //show form
-              responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number <strong>${fullPhoneNumber}</strong><br><br>
-                                          Tap below and send the connect message to proceed.`;
+              responseMessage.innerHTML = `Tap below to connect via line with this phone number <strong>${fullPhoneNumber}</strong>`;
             }
             else{
-              responseMessage.innerHTML = `Please connect to your Line account on the same mobile device using this phone number - <strong>{Phone number}</strong><br><br>
-                                          Tap below and send the connect message to proceed.`;
+              responseMessage.innerHTML = `Tap below to connect via line with this phone number <strong>{Phone number}</strong>`;
             }
           }
           if (userStatus == 'coupon_submitted') {
